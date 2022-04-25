@@ -6,11 +6,27 @@
 
 <form action="#" 
   th:action="@{/update/{id}(id=${tag.id})}" 
-  th:object="${tag}" 
   method="post">
   
-<div th:insert="fragments/components :: add"></div>
-	<div class="d-grid gap-2 col-3 mx-auto">
+<div th:switch="${uebungen}">
+        <div th:case="*">
+            <table class = "table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Datum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="uebung : ${uebungen}">
+                    <td th:text="${uebung.name}"></td>
+                    <td th:text="${uebung.gewicht}"></td>
+                    <td><a th:href="@{/edit/{id}(id=${uebung.id})}" class ="btn btn-secondary btn-sm" style ="background-color:#694949;" >Show</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${uebung.id})}" class ="btn btn-secondary btn-sm" style ="background-color:#694949;">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
   		<button style="background-color:#694949;"  class="btn btn-secondary btn-lg" type="submit" value="Update">Update</button>  
 </div>
 </form>

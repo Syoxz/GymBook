@@ -1,5 +1,6 @@
 package sbtl.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -22,7 +23,7 @@ public class Uebung {
 			joinColumns = @JoinColumn(name = "uebung_id"),
 			inverseJoinColumns =  @JoinColumn(name ="tag_id")
 	)
-	Set<Tag> istEnthalten;
+	Set<Tag> istEnthalten = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -63,6 +64,8 @@ public class Uebung {
 	public void setIstEnthalten(Set<Tag> istEnthalten) {
 		this.istEnthalten = istEnthalten;
 	}
+
+	
 	
 	
 	

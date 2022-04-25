@@ -1,9 +1,16 @@
 package sbtl.model;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Tag {
@@ -16,9 +23,9 @@ public class Tag {
 	    private LocalDate date = LocalDate.now();
 
 
-
+	@JsonIgnore
 	@ManyToMany(mappedBy = "istEnthalten")
-		Set<Uebung> enthaelt;
+		Set<Uebung> enthaelt = new HashSet<>();
 
 	public Set<Uebung> getEnthaelt() {
 		return enthaelt;
@@ -50,7 +57,9 @@ public class Tag {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	
+	public void enrollUebung(Uebung uebung) {
+		enthaelt.add(uebung);
+	}
 	 
 	 
 }

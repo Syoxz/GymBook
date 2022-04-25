@@ -9,10 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
 
-import javassist.tools.framedump;
 import sbtl.model.Tag;
 import sbtl.model.Uebung;
 import sbtl.repository.FitRepository;
@@ -46,6 +44,8 @@ public class FitController {
        
         uR.save(uebung);
         fR.save(tag);
+        enrollTagToUebung(uebung.getId(), tag.getId());
+        System.out.println(tag.getEnthaelt());
         return "redirect:/index";
     }
    
@@ -69,7 +69,7 @@ public class FitController {
         return "update-tag";
     }
     @PostMapping("/update/{id}")
-    public String updateTag(@PathVariable("id") long id, @Valid Tag tag, Uebung uebung,
+    public String updateTag(@PathVariable("id") Long id, @Valid Tag tag, Uebung uebung,
       BindingResult result, Model model) {
         if (result.hasErrors()) {
             tag.setId(id);
@@ -81,11 +81,21 @@ public class FitController {
     }
         
     @GetMapping("/delete/{id}")
-    public String deleteUebung(@PathVariable("id") long id, Model model) {
+    public String deleteUebung(@PathVariable("id") Long id, Model model) {
         Tag tag = fR.findById(id)
           .orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
         fR.delete(tag);
         return "redirect:/index";
     }
+    
+    @PutMapping("/add{tagId}/{uebungId}")
+    public Tag enrollTagToUebung (@PathVariable Long uebungId, 
+    						  @PathVariable Long tagId)
+    {
+    	Uebung uebung = uR.findById(uebungId).get(); 
+    	Tag tag = fR.findById(tagId).get();
+    	tag.enrollUebung(uebung);
+    	return fR.save(tag);
+    	}
 
 }

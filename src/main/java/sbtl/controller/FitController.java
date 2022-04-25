@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javassist.tools.framedump;
 import sbtl.model.Tag;
+import sbtl.model.Uebung;
 import sbtl.repository.FitRepository;
+import sbtl.repository.UebungRepository;
 
 @Controller
 public class FitController {
@@ -22,8 +24,11 @@ public class FitController {
 	@Autowired
 	FitRepository fR;
 
+	@Autowired
+	UebungRepository uR;
+	
     @GetMapping("/signup")
-    public String showSignUpForm(Tag tag) {
+    public String showSignUpForm(Tag tag, Uebung uebung) {
         return "add-tag";
     }
     
@@ -34,11 +39,12 @@ public class FitController {
         return "add-tag";
     }
     @PostMapping("/addtag")
-    public String addUebung( @Valid Tag tag, BindingResult result) {
+    public String addUebung(@Valid Uebung uebung, Tag tag, BindingResult result) {
         if (result.hasErrors()) {
             return "add-tag";
         }
-        
+       
+        uR.save(uebung);
         fR.save(tag);
         return "redirect:/index";
     }
@@ -63,7 +69,7 @@ public class FitController {
         return "update-tag";
     }
     @PostMapping("/update/{id}")
-    public String updateTag(@PathVariable("id") long id, @Valid Tag tag, 
+    public String updateTag(@PathVariable("id") long id, @Valid Tag tag, Uebung uebung,
       BindingResult result, Model model) {
         if (result.hasErrors()) {
             tag.setId(id);

@@ -2,11 +2,8 @@ package sbtl.model;
 
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+
 //Anfang der neuen Datenstruktur, aktuell noch keine Beachtung schenken!
 @Entity
 public class Uebung {
@@ -20,6 +17,11 @@ public class Uebung {
 	private int wiederholung;
 	
 	@ManyToMany
+	@JoinTable(
+			name = "tag_uebung",
+			joinColumns = @JoinColumn(name = "uebung_id"),
+			inverseJoinColumns =  @JoinColumn(name ="tag_id")
+	)
 	Set<Tag> istEnthalten;
 
 	public Long getId() {

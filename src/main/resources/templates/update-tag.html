@@ -6,7 +6,6 @@
 
 <form action="#" 
   th:action="@{/update/{id}(id=${tag.id})}" 
-  th:object="${tag}" 
   method="post">
   
 <div th:insert="fragments/components :: add"></div>

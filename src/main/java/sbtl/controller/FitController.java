@@ -1,5 +1,7 @@
 package sbtl.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,7 +104,9 @@ public class FitController {
     public String deleteUebung(@PathVariable("id") Long id, Model model) {
         Tag tag = fR.findById(id)
           .orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
+        List <Uebung> uebungen = uR.findAllByIstEnthalten(tag);
         fR.delete(tag);
+        uR.deleteAll(uebungen);
         return "redirect:/index";
     }
     

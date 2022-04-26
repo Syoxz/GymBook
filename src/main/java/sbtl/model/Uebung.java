@@ -20,8 +20,8 @@ public class Uebung {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private double gewicht;
-	private int wiederholung;
+	private Double gewicht;
+	private Integer wiederholung;
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "enthaelt")
@@ -43,19 +43,19 @@ public class Uebung {
 		this.name = name;
 	}
 
-	public double getGewicht() {
+	public Double getGewicht() {
 		return gewicht;
 	}
 
-	public void setGewicht(double gewicht) {
+	public void setGewicht(Double gewicht) {
 		this.gewicht = gewicht;
 	}
 
-	public int getWiederholung() {
+	public Integer getWiederholung() {
 		return wiederholung;
 	}
 
-	public void setWiederholung(int wiederholung) {
+	public void setWiederholung(Integer wiederholung) {
 		this.wiederholung = wiederholung;
 	}
 

@@ -45,7 +45,6 @@ public class FitController {
         uR.save(uebung);
         fR.save(tag);
         enrollTagToUebung(uebung.getId(), tag.getId());
-        System.out.println(tag.getEnthaelt());
         return "redirect:/index";
     }
    

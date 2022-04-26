@@ -14,13 +14,16 @@
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col">Datum</th>
+                        <th scope="col">Gewicht</th>
+                        <th scope="col">Wiederholung</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                 <tr th:each="uebung : ${uebungen}">
                     <td th:text="${uebung.name}"></td>
                     <td th:text="${uebung.gewicht}"></td>
+                    <td th:text="${uebung.wiederholung}"></td>
                     <td><a th:href="@{/edit/{id}(id=${uebung.id})}" class ="btn btn-secondary btn-sm" style ="background-color:#694949;" >Show</a></td>
                     <td><a th:href="@{/delete/{id}(id=${uebung.id})}" class ="btn btn-secondary btn-sm" style ="background-color:#694949;">Delete</a></td>
                 </tr>

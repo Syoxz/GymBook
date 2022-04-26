@@ -67,6 +67,14 @@ public class FitController {
         model.addAttribute("tag", tag);
         return "update-tag";
     }
+    @GetMapping("/edit/uebung/{id}")
+    public String editUebung(@PathVariable("id") Long id, Model model) {
+        Uebung uebung  = uR.findById(id)
+        		.orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
+        model.addAttribute("uebung", uebung);
+        return "update-uebung";
+    }
+    
     @PostMapping("/update/{id}")
     public String updateTag(@PathVariable("id") Long id, @Valid Tag tag, Uebung uebung,
       BindingResult result, Model model) {
@@ -77,6 +85,17 @@ public class FitController {
             
         fR.save(tag);
         return "redirect:/index";
+    }
+    @PostMapping("/update/uebung/{id}")
+    public String updateUebung(@PathVariable("id") Long id, @Valid Uebung uebung,
+      BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            uebung.setId(id);
+            return "update-uebung";
+        }
+            
+        uR.save(uebung);
+        return "redirect:/edit/{id}";
     }
         
     @GetMapping("/delete/{id}")

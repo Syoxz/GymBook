@@ -137,6 +137,7 @@ buildNumber.properties
 
 # ignore gymbook-db
 src/main/resources/data/gymbook-db.mv.db
+src/main/resources/data/gymbook-db.trace.db
 
 # Support for Project snippet scope
 

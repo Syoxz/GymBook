@@ -136,8 +136,8 @@ buildNumber.properties
 .idea
 
 # ignore gymbook-db
-src/main/resources/data/gymbook-db.mv.db
-src/main/resources/data/gymbook-db.trace.db
+src/main/resources/data
+
 
 # Support for Project snippet scope
 

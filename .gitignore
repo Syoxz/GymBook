@@ -132,6 +132,9 @@ buildNumber.properties
 .history
 .ionide
 
+# Ignore .idea
+.idea
+
 # ignore gymbook-db
 src/main/resources/data/gymbook-db.mv.db
 

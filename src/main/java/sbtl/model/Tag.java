@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,9 +24,12 @@ public class Tag {
 	    private String tagName;
 	    private LocalDate date = LocalDate.now();
 
-
-	@JsonIgnore
-	@ManyToMany(mappedBy = "istEnthalten")
+	@ManyToMany
+	@JoinTable(
+			name = "tag_uebung",
+			joinColumns = @JoinColumn(name = "tag_id"),
+			inverseJoinColumns =  @JoinColumn(name ="uebung_id")
+	)
 		Set<Uebung> enthaelt = new HashSet<>();
 
 	public Set<Uebung> getEnthaelt() {

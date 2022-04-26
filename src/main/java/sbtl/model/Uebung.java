@@ -3,7 +3,13 @@ package sbtl.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //Anfang der neuen Datenstruktur, aktuell noch keine Beachtung schenken!
 @Entity
@@ -17,12 +23,8 @@ public class Uebung {
 	private double gewicht;
 	private int wiederholung;
 	
-	@ManyToMany
-	@JoinTable(
-			name = "tag_uebung",
-			joinColumns = @JoinColumn(name = "uebung_id"),
-			inverseJoinColumns =  @JoinColumn(name ="tag_id")
-	)
+	@JsonIgnore
+	@ManyToMany(mappedBy = "enthaelt")
 	Set<Tag> istEnthalten = new HashSet<>();
 
 	public Long getId() {

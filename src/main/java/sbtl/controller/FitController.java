@@ -64,7 +64,7 @@ public class FitController {
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         Tag tag = fR.findById(id)
           .orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
-        
+        model.addAttribute("uebungen", uR.findAllByIstEnthalten(tag));
         model.addAttribute("tag", tag);
         return "update-tag";
     }

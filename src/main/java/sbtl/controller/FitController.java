@@ -61,6 +61,8 @@ public class FitController {
         model.addAttribute("tage", fR.findAll());
         return "index";
     }
+    
+    //Editiert einen ganzen Tag
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         Tag tag = fR.findById(id)
@@ -69,6 +71,8 @@ public class FitController {
         model.addAttribute("tag", tag);
         return "update-tag";
     }
+    
+    //Editiert eine einzelne Uebung
     @GetMapping("/edit/uebung/{id}")
     public String editUebung(@PathVariable("id") Long id, Model model) {
         Uebung uebung  = uR.findById(id)
@@ -77,6 +81,7 @@ public class FitController {
         return "update-uebung";
     }
     
+    //Wird aktuell nicht benutzt
     @PostMapping("/update/{id}")
     public String updateTag(@PathVariable("id") Long id, @Valid Tag tag, Uebung uebung,
       BindingResult result, Model model) {
@@ -88,6 +93,8 @@ public class FitController {
         fR.save(tag);
         return "redirect:/index";
     }
+    
+    //Updated eine einzelne Uebung
     @PostMapping("/update/uebung/{id}")
     public String updateUebung(@PathVariable("id") Long id, @Valid Uebung uebung,
       BindingResult result, Model model) {
@@ -99,15 +106,23 @@ public class FitController {
         uR.save(uebung);
         return "redirect:/edit/{id}";
     }
-        
+    
+    //Loescht den Tag mit den dazu gehoerigen Uebungen
     @GetMapping("/delete/{id}")
-    public String deleteUebung(@PathVariable("id") Long id, Model model) {
+    public String deleteTag(@PathVariable("id") Long id, Model model) {
         Tag tag = fR.findById(id)
           .orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
-        List <Uebung> uebungen = uR.findAllByIstEnthalten(tag);
         fR.delete(tag);
-        uR.deleteAll(uebungen);
         return "redirect:/index";
+    }
+    
+    //Loescht eine einzelne Uebung
+    @GetMapping("/delete/uebung/{id}")
+    public String deleteUebung(@PathVariable("id") Long id, Model model) {
+        Uebung uebung = uR.findById(id)
+          .orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
+        uR.delete(uebung);
+        return "redirect:/update-tag";
     }
     
     @PutMapping("/add{tagId}/{uebungId}")

@@ -8,4 +8,5 @@ import sbtl.model.Tag;
 
 @Repository
 public interface FitRepository extends CrudRepository<Tag, Long> {
+	
 }

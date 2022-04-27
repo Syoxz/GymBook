@@ -33,13 +33,28 @@ public class FitController {
     }
     
   
-    
-    @PostMapping("/showLabel")
-    public String showLabelForm(Tag tag) {
-        return "add-tag";
+    //Erscheint wenn man eine neue Uebung einem Tag hinzufuegen will
+    @GetMapping("/showLabel/{id}")
+    public String showLabelForm(@PathVariable("id") Long id, Uebung uebung, Model model) {
+    	Tag tag = fR.findById(id)
+        		.orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
+    	model.addAttribute(tag);
+        return "add-uebung";
     }
+    
+    @PostMapping("/addUebung/{id}")
+    public String addUebung(Tag tag,Uebung uebung, BindingResult result) {
+        if (result.hasErrors()) {
+            return "add-uebung";
+        }
+        uR.save(uebung);  
+        enrollTagToUebung(uebung.getId(), tag.getId());
+
+        return "redirect:/edit/{id}";
+    }
+    
     @PostMapping("/addtag")
-    public String addUebung(@Valid Uebung uebung, Tag tag, BindingResult result) {
+    public String addUebungUndTag(@Valid Uebung uebung, Tag tag, BindingResult result) {
         if (result.hasErrors()) {
             return "add-tag";
         }

@@ -3,6 +3,7 @@ package sbtl.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +12,7 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-//Anfang der neuen Datenstruktur, aktuell noch keine Beachtung schenken!
+
 @Entity
 public class Uebung {
 

@@ -99,7 +99,7 @@ public class FitController {
     //Wird aktuell nicht benutzt
     @PostMapping("/update/{id}")
     public String updateTag(@PathVariable("id") Long id, @Valid Tag tag, Uebung uebung,
-      BindingResult result, Model model) {
+      BindingResult result, Model model) {	
         if (result.hasErrors()) {
             tag.setId(id);
             return "update-tag";

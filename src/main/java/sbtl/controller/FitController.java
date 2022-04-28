@@ -38,19 +38,22 @@ public class FitController {
     public String showLabelForm(@PathVariable("id") Long id, Uebung uebung, Model model) {
     	Tag tag = fR.findById(id)
         		.orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
-    	model.addAttribute(tag);
+    	System.out.println(tag.getId());
+    	
+    	model.addAttribute("tag", tag);
         return "add-uebung";
     }
     
-    @PostMapping("/addUebung/{id}")
-    public String addUebung(Tag tag,Uebung uebung, BindingResult result) {
+    @PostMapping("/addUebung/{tagId}")
+    public String addUebung(@PathVariable Long tagId, Uebung uebung, BindingResult result) {
         if (result.hasErrors()) {
             return "add-uebung";
         }
-        uR.save(uebung);  
-        enrollTagToUebung(uebung.getId(), tag.getId());
+      
+        uR.save(uebung);
+        enrollTagToUebung(uebung.getId(),tagId);
 
-        return "redirect:/edit/{id}";
+        return "redirect:/edit/{tagId}";
     }
     
     @PostMapping("/addtag")

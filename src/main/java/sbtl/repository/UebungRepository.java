@@ -10,5 +10,5 @@ import sbtl.model.Uebung;
 
 @Repository
 public interface UebungRepository extends CrudRepository <Uebung, Long> {
-	
+	List <Uebung> findAllByIstEnthalten (Tag tag);
 }

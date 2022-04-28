@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/components :: header"></head>
+<nav th:insert="fragments/components :: navbar"></nav>
+
+<form action="#"  
+	th:action="@{/addUebung/{id}(id=${tag.id})}" 
+	method="POST">
+
+
+ <div class="form-floating">
+  <input type="text" class="form-control" th:field="*{uebung.name}"  id="name" placeholder="Uebung">
+  <span th:if="${#fields.hasErrors('uebung.name')}" th:errors="*{uebung.name}"></span>
+  <label for="name" class="form-label">Übung</label>
+</div>
+<div class="form-floating">
+  <input type="number" step ="0.01" class="form-control" th:field="*{uebung.gewicht}"  id="gewicht" placeholder="Gewicht">
+  <span th:if="${#fields.hasErrors('uebung.gewicht')}" th:errors="*{uebung.gewicht}"></span>
+  <label for="gewicht">Gewicht</label>
+</div>
+<div class="form-floating">
+  <input type="number" class="form-control" th:field="*{uebung.wiederholung}" id="wiederholung" placeholder="Wiederholungen">
+  <span th:if="${#fields.hasErrors('uebung.wiederholung')}" th:errors="*{uebung.wiederholung}"></span>
+  <label for="wiederholung">Wiederholungen</label>
+</div>
+<br/>
+<div class="d-grid gap-2 col-3 mx-auto">
+  	<button style="background-color:#694949;"  class="btn btn-secondary btn-lg" type="submit" value="Add">Add</button>  
+</div>
+</form>
+</html>

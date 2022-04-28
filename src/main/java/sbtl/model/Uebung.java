@@ -3,9 +3,16 @@ package sbtl.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
-//Anfang der neuen Datenstruktur, aktuell noch keine Beachtung schenken!
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 @Entity
 public class Uebung {
 
@@ -14,15 +21,11 @@ public class Uebung {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private double gewicht;
-	private int wiederholung;
+	private Double gewicht;
+	private Integer wiederholung;
 	
-	@ManyToMany
-	@JoinTable(
-			name = "tag_uebung",
-			joinColumns = @JoinColumn(name = "uebung_id"),
-			inverseJoinColumns =  @JoinColumn(name ="tag_id")
-	)
+	@JsonIgnore
+	@ManyToMany(mappedBy = "enthaelt")
 	Set<Tag> istEnthalten = new HashSet<>();
 
 	public Long getId() {
@@ -41,19 +44,19 @@ public class Uebung {
 		this.name = name;
 	}
 
-	public double getGewicht() {
+	public Double getGewicht() {
 		return gewicht;
 	}
 
-	public void setGewicht(double gewicht) {
+	public void setGewicht(Double gewicht) {
 		this.gewicht = gewicht;
 	}
 
-	public int getWiederholung() {
+	public Integer getWiederholung() {
 		return wiederholung;
 	}
 
-	public void setWiederholung(int wiederholung) {
+	public void setWiederholung(Integer wiederholung) {
 		this.wiederholung = wiederholung;
 	}
 

@@ -112,15 +112,17 @@ public class FitController {
     
     //Updated eine einzelne Uebung
     @PostMapping("/update/uebung/{id}")
-    public String updateUebung(@PathVariable("id") Long id, @Valid Uebung uebung,
+    public String updateUebung(@PathVariable("id") Long id, @Valid Uebung uebung, 
       BindingResult result, Model model) {
         if (result.hasErrors()) {
             uebung.setId(id);
             return "update-uebung";
         }
-            
+        Tag tag = fR.findByEnthaelt(uebung);
+        model.addAttribute("uebungen", uR.findAllByIstEnthalten(tag));
+        model.addAttribute("tag", tag);
         uR.save(uebung);
-        return "redirect:/index";
+        return "update-tag";
     }
     
     //Loescht den Tag mit den dazu gehoerigen Uebungen
@@ -140,7 +142,9 @@ public class FitController {
         Tag tag = fR.findByEnthaelt(uebung);
         tag.deleteUebung(uebung);
         uR.delete(uebung);
-        return "redirect:/index";
+        model.addAttribute("uebungen", uR.findAllByIstEnthalten(tag));
+        model.addAttribute("tag", tag);
+        return "update-tag";
     }
     
     @PutMapping("/add{tagId}/{uebungId}")

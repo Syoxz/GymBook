@@ -3,30 +3,59 @@
 
 <head th:insert="fragments/components :: header"></head>
 <nav th:insert="fragments/components :: navbar"></nav>
-
+	<meta charset="UTF-8">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/js/test.js"></script>
+	<link href="/css/style.css" rel="stylesheet" id="bootstrap-css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	
+</head> 
+<body>
 <form action="#" 
-  th:action="@{/update/uebung/{id}(id=${uebung.id})}" 
-  th:object ="${uebung}"
-  method="post">
-  
-<div class="form-floating">
-  <input type="text" class="form-control" th:field="*{name}" list="Uebung" id="name" placeholder="Name">
-  <datalist th:insert="fragments/components :: vorschlag"></datalist>
-  <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-  <label for="name" class="form-label">Name</label>
-</div>
-<div class="form-floating">
-  <input type="number" step ="0.01" class="form-control" th:field="*{gewicht}" id="gewicht" placeholder="Gewicht">
-  <span th:if="${#fields.hasErrors('gewicht')}" th:errors="*{gewicht}"></span>
-  <label for="gewicht">Gewicht</label>
-</div>
-<div class="form-floating">
-  <input type="number" class="form-control" th:field="*{wiederholung}" id="wiederholung" placeholder="Wiederholungen">
-  <span th:if="${#fields.hasErrors('wiederholung')}" th:errors="*{wiederholung}"></span>
-  <label for="gewicht">Wiederholungen</label>
-</div>
-<br/>
-<div class="d-grid gap-2 col-3 mx-auto">
-  <button style="background-color:#694949;"  class="btn btn-secondary btn-lg" type="submit" value="Add">Add</button>  
-</div>	
-</form>
+	th:action="@{/update/uebung/{id}(id=${uebung.id})}" 
+	th:object ="${uebung}"
+	method="post">
+	<div class="container h-100">
+	<div class="d-flex justify-content-center">
+		<div class="card mt-5 col-md-4 animated bounceInDown myForm">
+			<div class="card-header">
+				<h4>Übung</h4>
+			</div>
+			<div class="card-body">
+				
+				<div id="dynamic_container">						
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text br-15"></span>
+							</div>
+							<input type="text" placeholder="Übung" th:field="*{name}" class="form-control"/>
+						</div>
+						<div class="input-group mt-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text br-15"></span>
+							</div>
+							<input type="number" step = "0.01" placeholder="Gewicht" th:field="*{gewicht}" class="form-control"/>
+						</div>
+						<div class="input-group mt-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text br-15"></span>
+							</div>
+							<input type="number" placeholder="Wiederholungen"  th:field="*{wiederholung}" class="form-control"/>
+						</div>
+					</div>
+			</div>
+			<div class="card-footer">
+				<button class="btn btn-success btn-sm float-right submit_btn"><i class="fas fa-arrow-alt-circle-right"></i> Submit</button>
+			</div>
+			
+		</div>
+	</div>
+	</div>
+	</form>
+</body>
+</html>

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments/components :: header"></head>
+<meta charset="UTF-8">
 <nav th:insert="fragments/components :: navbar"></nav>
 
 <form action="#"  
 	th:action="@{/addUebung/{tagId}(tagId=${tag.id})}" 
 	method="POST">
+	
 
 
  <div class="form-floating">
   <input type="text" class="form-control" th:field="*{uebung.name}"  id="name" placeholder="Uebung">
   <span th:if="${#fields.hasErrors('uebung.name')}" th:errors="*{uebung.name}"></span>
-  <label for="name" class="form-label">Übung</label>
+  <label for="name" class="form-label">Ãœbung</label>
 </div>
 <div class="form-floating">
   <input type="number" step ="0.01" class="form-control" th:field="*{uebung.gewicht}"  id="gewicht" placeholder="Gewicht">

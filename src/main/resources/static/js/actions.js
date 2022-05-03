@@ -1,3 +1,0 @@
-function tagName() {
-   alert("test");
-}

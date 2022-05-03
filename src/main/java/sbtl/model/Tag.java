@@ -64,6 +64,9 @@ public class Tag {
 	public void enrollUebung(Uebung uebung) {
 		enthaelt.add(uebung);
 	}
+	public void deleteUebung (Uebung uebung) {
+		enthaelt.remove(uebung);
+	}
 	 
 	 
 }

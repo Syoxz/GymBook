@@ -38,8 +38,6 @@ public class FitController {
     public String showLabelForm(@PathVariable("id") Long id, Uebung uebung, Model model) {
     	Tag tag = fR.findById(id)
         		.orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
-    	System.out.println(tag.getId());
-    	
     	model.addAttribute("tag", tag);
         return "add-uebung";
     }
@@ -82,7 +80,7 @@ public class FitController {
     
     //Editiert einen ganzen Tag
     @GetMapping("/edit/{id}")
-    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+    public String showUpdateForm(@PathVariable Long id, Model model) {
         Tag tag = fR.findById(id)
           .orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
         model.addAttribute("uebungen", uR.findAllByIstEnthalten(tag));
@@ -100,29 +98,31 @@ public class FitController {
     }
     
     //Wird aktuell nicht benutzt
-    @PostMapping("/update/{id}")
-    public String updateTag(@PathVariable("id") Long id, @Valid Tag tag, Uebung uebung,
-      BindingResult result, Model model) {	
-        if (result.hasErrors()) {
-            tag.setId(id);
-            return "update-tag";
-        }
-            
-        fR.save(tag);
-        return "redirect:/index";
-    }
+//    @PostMapping("/update/{id}")
+//    public String updateTag(@PathVariable("id") Long id, @Valid Tag tag, Uebung uebung,
+//      BindingResult result, Model model) {	
+//        if (result.hasErrors()) {
+//            tag.setId(id);
+//            return "update-tag";
+//        }
+//            
+//        fR.save(tag);
+//        return "redirect:/index";
+//    }
     
     //Updated eine einzelne Uebung
     @PostMapping("/update/uebung/{id}")
-    public String updateUebung(@PathVariable("id") Long id, @Valid Uebung uebung,
+    public String updateUebung(@PathVariable("id") Long id, @Valid Uebung uebung, 
       BindingResult result, Model model) {
         if (result.hasErrors()) {
             uebung.setId(id);
             return "update-uebung";
         }
-            
+        Tag tag = fR.findByEnthaelt(uebung);
+        model.addAttribute("uebungen", uR.findAllByIstEnthalten(tag));
+        model.addAttribute("tag", tag);
         uR.save(uebung);
-        return "redirect:/edit/{id}";
+        return "update-tag";
     }
     
     //Loescht den Tag mit den dazu gehoerigen Uebungen
@@ -139,8 +139,12 @@ public class FitController {
     public String deleteUebung(@PathVariable("id") Long id, Model model) {
         Uebung uebung = uR.findById(id)
           .orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
+        Tag tag = fR.findByEnthaelt(uebung);
+        tag.deleteUebung(uebung);
         uR.delete(uebung);
-        return "redirect:/update-tag";
+        model.addAttribute("uebungen", uR.findAllByIstEnthalten(tag));
+        model.addAttribute("tag", tag);
+        return "update-tag";
     }
     
     @PutMapping("/add{tagId}/{uebungId}")

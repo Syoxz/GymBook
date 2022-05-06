@@ -55,15 +55,12 @@ public class FitController {
     }
     
     @PostMapping("/addtag")
-    public String addUebungUndTag(@Valid Uebung uebung, Tag tag, BindingResult result) {
+    public String addUebungUndTag(Uebung uebung, Tag tag, BindingResult result) {
         if (result.hasErrors()) {
             return "add-tag";
         }
-       
-        uR.save(uebung);
         fR.save(tag);
-        enrollTagToUebung(uebung.getId(), tag.getId());
-        return "redirect:/index";
+        return "add-uebung";
     }
    
     //Muss man noch anpassen, bzw. / direkt auf index weiterleiten

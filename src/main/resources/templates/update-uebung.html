@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/layoutUebung :: head"></head>
+<nav th:insert="fragments/components :: navbar"></nav>
+<meta charset="UTF-8">
+<body>
+<form action="#" 
+	th:action="@{/update/uebung/{id}(id=${uebung.id})}" 
+	th:object ="${uebung}"
+	method="post">
+	<div class="container h-100">
+	<div class="d-flex justify-content-center">
+		<div class="card mt-5 col-md-4 animated bounceInDown myForm">
+			<div class="card-header">
+				<h4>Übung</h4>
+			</div>
+			<div class="card-body">
+				
+				<div id="dynamic_container">						
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text br-15"></span>
+							</div>
+							<input type="text" placeholder="Übung" th:field="*{name}" class="form-control"/>
+						</div>
+						<div class="input-group mt-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text br-15"></span>
+							</div>
+							<input type="number" step = "0.01" placeholder="Gewicht" th:field="*{gewicht}" class="form-control"/>
+						</div>
+						<div class="input-group mt-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text br-15"></span>
+							</div>
+							<input type="number" placeholder="Wiederholungen"  th:field="*{wiederholung}" class="form-control"/>
+						</div>
+					</div>
+			</div>
+			<div class="card-footer">
+				<button class="btn btn-success btn-sm float-right submit_btn"><i class="fas fa-arrow-alt-circle-right"></i> Submit</button>
+			</div>
+			
+		</div>
+	</div>
+	</div>
+	</form>
+</body>
+</html>

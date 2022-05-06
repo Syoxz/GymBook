@@ -1,11 +1,17 @@
 package sbtl.model;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Tag {
@@ -15,10 +21,23 @@ public class Tag {
 	private Long id;
 	
 	    private String tagName;
-	    private String uebungName;
-	    private Double gewicht;
-	    private Integer wiederholung;
 	    private LocalDate date = LocalDate.now();
+
+	@ManyToMany (cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "tag_uebung",
+			joinColumns = @JoinColumn(name = "tag_id"),
+			inverseJoinColumns =  @JoinColumn(name ="uebung_id")
+	)
+		Set<Uebung> enthaelt = new HashSet<>();
+
+	public Set<Uebung> getEnthaelt() {
+		return enthaelt;
+	}
+
+	public void setEnthaelt(Set<Uebung> enthaelt) {
+		this.enthaelt = enthaelt;
+	}
 	    
 	public Long getId() {
 		return id;
@@ -31,31 +50,6 @@ public class Tag {
 	public String getTagName() {
 		return tagName;
 	}
-
-	public Double getGewicht() {
-		return gewicht;
-	}
-
-	public void setGewicht(Double gewicht) {
-		this.gewicht = gewicht;
-	}
-
-	public Integer getWiederholung() {
-		return wiederholung;
-	}
-
-	public void setWiederholung(Integer wiederholung) {
-		this.wiederholung = wiederholung;
-	}
-
-	public String getUebungName() {
-		return uebungName;
-	}
-
-	public void setUebungName(String uebungName) {
-		this.uebungName = uebungName;
-	}
-
 	public void setTagName(String tagName) {
 		this.tagName = tagName;
 	}
@@ -67,7 +61,12 @@ public class Tag {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	
+	public void enrollUebung(Uebung uebung) {
+		enthaelt.add(uebung);
+	}
+	public void deleteUebung (Uebung uebung) {
+		enthaelt.remove(uebung);
+	}
 	 
 	 
 }

@@ -1,6 +1,5 @@
 package sbtl.repository;
 
-
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
@@ -10,6 +9,6 @@ import sbtl.model.Tag;
 import sbtl.model.Uebung;
 
 @Repository
-public interface FitRepository extends CrudRepository<Tag, Long> {
-	Tag findByEnthaelt (Uebung uebung);
+public interface UebungRepository extends CrudRepository <Uebung, Long> {
+	List <Uebung> findAllByIstEnthalten (Tag tag);
 }

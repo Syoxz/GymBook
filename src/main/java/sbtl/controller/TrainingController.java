@@ -26,10 +26,10 @@ public class TrainingController {
 	@Autowired
 	UebungRepository uR;
 	
-    @GetMapping("/signup")
-    public String showSignUpForm(Tag tag, Uebung uebung) {
-        return "add-tag";
-    }
+@GetMapping("/signup")
+public String showSignUpForm(Tag tag, Uebung uebung) {
+    return "add-tag";
+}
 @PostMapping("/addUebung/{tagId}")
 public String addUebung(@PathVariable Long tagId, Uebung uebung, BindingResult result) {
     if (result.hasErrors()) {

@@ -15,8 +15,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Uebung {
-
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -67,11 +65,4 @@ public class Uebung {
 	public void setIstEnthalten(Set<Tag> istEnthalten) {
 		this.istEnthalten = istEnthalten;
 	}
-
-	
-	
-	
-	
-	
-	
 }

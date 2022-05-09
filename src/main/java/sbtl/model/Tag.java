@@ -15,13 +15,11 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class Tag {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	    private String tagName;
-	    private LocalDate date = LocalDate.now();
+	private String tagName;
+	private LocalDate date = LocalDate.now();
 
 	@ManyToMany (cascade = CascadeType.ALL)
 	@JoinTable(
@@ -67,6 +65,4 @@ public class Tag {
 	public void deleteUebung (Uebung uebung) {
 		enthaelt.remove(uebung);
 	}
-	 
-	 
 }

@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head th:insert="fragments/components :: header"></head>
 <link rel="stylesheet" href="/css/stopwatch.css" />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<div>
 <nav th:insert="fragments/components :: navbar"></nav>
-
-  
+</div>
 <div th:switch="${uebungen}">
-        <div th:case="*">
-            <table class = "table table-bordered">
+        <div th:case="*">	
+            <table class = "table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
@@ -18,11 +17,11 @@
                         <th scope="col">Wiederholung</th>
         				<th scope="col"><div class="controls">
 				        <button class="buttonPlay">
-				        <img id="playButton" src="https://i.ibb.co/3M4wcn0/play-Button.png" />
-						<img id="pauseButton" src="https://i.ibb.co/c3V5pz1/pause-Button.png" />
+					        <img id="playButton" src="https://i.ibb.co/3M4wcn0/play-Button.png" />
+							<img id="pauseButton" src="https://i.ibb.co/c3V5pz1/pause-Button.png" />
 				        </button>
 				        <button class="buttonReset">
-				        <img id="resetButton" src="https://i.ibb.co/wJ3kQkH/stop-Button.png"/>
+				        	<img id="resetButton" src="https://i.ibb.co/wJ3kQkH/stop-Button.png"/>
 				        </button>
 				        <script src="/js/stopwatch.js"></script>
 				        </div></th>

@@ -20,6 +20,7 @@ import sbtl.repository.UebungRepository;
 
 @Controller
 public class TrainingController {
+	
 	@Autowired
 	FitRepository fR;
 
@@ -47,6 +48,11 @@ public String addUebungUndTag(Uebung uebung, Tag tag, BindingResult result) {
     fR.save(tag);
     return "add-uebung";
 }
+@GetMapping("/")
+public String showUebungenList1(Model model) {
+    model.addAttribute("tage", fR.findAll());
+    return "index";
+}   
 @GetMapping("/index")
 public String showUebungenList(Model model) {
     model.addAttribute("tage", fR.findAll());
@@ -77,5 +83,4 @@ public Tag enrollTagToUebung (@PathVariable Long uebungId,
 	tag.enrollUebung(uebung);
 	return fR.save(tag);
     	}
-
 }

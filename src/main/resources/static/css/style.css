@@ -1,52 +1,41 @@
-	html,body{
-			height: 100%;
-			margin: 0;
-			background: rgb(2,0,36);
-           
-		
-		}
-   
-   .myForm{
-   	background-color: rgb(105,73,73) !important;
-   	padding: 15px !important;
-   border-radius: 15px !important;
-   color: white;
-   
-   }
-
-   input{
+html,body{
+	height: 100%;
+	margin: 0;
+	background: rgb(2,0,36);     
+}
+.myForm{
+	background-color: rgb(105,73,73) !important;
+	padding: 15px !important;
+	border-radius: 15px !important;
+	color: white;
+  	   }
+input{
    	border-radius:0 15px 15px 0 !important;
+  	 }
+input:focus{
+    outline: none;
+	box-shadow:none !important;
+	border:1px solid #ccc !important;
 
    }
-   input:focus{
-       outline: none;
-box-shadow:none !important;
-border:1px solid #ccc !important;
-
-   }
-
-   .br-15{
+.br-15{
    	border-radius: 15px 0 0 15px !important;
    }
-
-   #add_more{
-   	color: white !important;
-   	background-color: #875953 !important;
-   	border-radius: 15px !important;
-   	border: 0 !important;
-
-   }
-   #remove_more{
-   	color: white !important;
-   	background-color: #954949 !important;
-   	border-radius: 15px !important;
-   	border: 0 !important;
-   	display: none;
-
-   }
-   	
-   .submit_btn{
-   	border-radius: 15px !important;
-    background-color: #657D5B !important;
-    border: 0 !important;
-   }
+#add_more{
+ 	color: white !important;
+ 	background-color: #875953 !important;
+ 	border-radius: 15px !important;
+ 	border: 0 !important;
+ }
+#remove_more{
+	color: white !important;
+	background-color: #954949 !important;
+	border-radius: 15px !important;
+	border: 0 !important;
+	display: none;
+}
+.submit_btn{
+	border-radius: 15px !important;
+ 	background-color: #657D5B !important;
+ 	border: 0 !important;
+}

@@ -14,12 +14,15 @@ h3 {
   font-size: 30px;
   font-family: "Montserrat", sans-serif;
   font-weight: 20;
-
   align-items: right;
   line-height: 65px;
   text-align: center;
   padding: 0 64px;
   margin: 0;
+}
+nav {
+  font-family: "Montserrat", sans-serif;
+  line-height: 45px;
 }
 
 .stopwatch {

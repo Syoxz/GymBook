@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments/components :: header"></head>
 <nav th:insert="fragments/components :: navbar"></nav>
-<h3 th:text="${tag.tagName}"></h3>
+<h3 th:text="${tag.tagName}" ></h3>
 <div th:switch="${uebungen}">
         <div th:case="*">	
             <table class = "table table-striped table-hover table-bordered">

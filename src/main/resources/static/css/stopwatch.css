@@ -2,23 +2,21 @@ h1 {
   font-size: 38px;
   font-family: "Montserrat", sans-serif;
   font-weight: 200;
-
   align-items: center;
   line-height: 59px;
-
   padding: 0 64px;
   margin: 0;
 }
 
 h3 {
-  font-size: 30px;
+  font-size: 25px;
   font-family: "Montserrat", sans-serif;
   font-weight: 20;
-  align-items: right;
-  line-height: 65px;
-  text-align: center;
+  margin-top:5px;
+  line-height: 55px;
+  text-align: left;
   padding: 0 64px;
-  margin: 0;
+  margin-left: -57px;
 }
 nav {
   font-family: "Montserrat", sans-serif;
@@ -67,6 +65,7 @@ button {
   display: block;
   width: 35px;
   height: 30px;
+  text-align: right;	
 }
 
 #pauseButton {

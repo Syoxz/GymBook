@@ -15,14 +15,14 @@
                 <tr th:each="tag : ${tage}">
                     <td th:text="${tag.tagName}"></td>
                     <td th:text="${tag.date}"></td>
-                    <td><a th:href="@{/edit/{id}(id=${tag.id})}" class ="btn btn-secondary btn-sm" style ="background-color:#694949;" >Show</a></td>
-                    <td><a th:href="@{/delete/{id}(id=${tag.id})}" class ="btn btn-secondary btn-sm" style ="background-color:#694949;">Delete</a></td>
+                    <td><a th:href="@{/edit/{id}(id=${tag.id})}"> <img src="https://i.ibb.co/VJwXddH/icons8-bearbeiten-64.png" style = height:25px;width:25px;></a></td>
+                    <td><a th:href="@{/delete/{id}(id=${tag.id})}"><img src="https://i.ibb.co/g3vG6d4/trash.png" style = height:20px;width:20px;></a></td>
                 </tr>
             </tbody>
         </table>
     </div>      
    <form action ="/signup">
-   		<button class="btn btn-secondary btn-sm" style ="background-color:#694949;" type="submit" value="New Uebung">Neu</button>  
+   		<button class="btn btn-secondary btn-sm" style ="background-color:#4d4d4d;" type="submit" value="New Uebung">Neu</button>  
     </form>
 </div>
 </html>

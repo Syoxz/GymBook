@@ -29,12 +29,12 @@
                     <td th:text="${uebung.name}"></td>
                     <td th:text="${uebung.gewicht}"></td>
                     <td th:text="${uebung.wiederholung}"></td>
-                    <td><a th:href="@{/edit/uebung/{id}(id=${uebung.id})}" class ="btn btn-secondary btn-sm" style ="background-color:#694949;" >Edit</a></td>
-                    <td><a th:href="@{/delete/uebung/{id}(id=${uebung.id})}" class ="btn btn-secondary btn-sm" style ="background-color:#694949;">Delete</a></td>
+                    <td><a th:href="@{/edit/uebung/{id}(id=${uebung.id})}"> <img src="https://i.ibb.co/VJwXddH/icons8-bearbeiten-64.png" style = height:25px;width:25px;></a></td>
+                    <td><a th:href="@{/delete/uebung/{id}(id=${uebung.id})}"> <img src="https://i.ibb.co/g3vG6d4/trash.png" style = height:20px;width:20px;></a></td>
                 </tr>
             </tbody>
         </table>
     </div>      
-     <a th:href ="@{/showLabel/{id}(id=${tag.id})}" class ="btn btn-secondary btn-sm" style ="background-color:#694949;">Add</a>
+     <a th:href ="@{/showLabel/{id}(id=${tag.id})}" class ="btn btn-secondary btn-sm" style ="background-color:#4d4d4d;">Add</a>
 </div>
 </html>
